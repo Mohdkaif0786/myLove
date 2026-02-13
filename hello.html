@@ -1,18 +1,285 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Page Title</title>
-  <style>
-    p{
-      color:red;
-    }
-    h1{color:yellow}
-    
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sara (Ahana) ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#14001f,#3a003a,#ff0077);
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+/* Soft Moving Glow Background */
+body::before{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background:radial-gradient(white 1px,transparent 1px);
+background-size:60px 60px;
+opacity:0.05;
+animation:bgMove 40s linear infinite;
+}
+@keyframes bgMove{
+from{transform:translate(0,0);}
+to{transform:translate(-400px,-400px);}
+}
+
+.container{z-index:2;width:90%;max-width:500px;}
+
+input{
+padding:12px 20px;
+border-radius:25px;
+border:none;
+outline:none;
+margin-top:15px;
+text-align:center;
+width:80%;
+}
+
+button{
+padding:12px 35px;
+border:none;
+border-radius:30px;
+background:#ff2e88;
+color:white;
+cursor:pointer;
+margin-top:15px;
+box-shadow:0 0 20px #ff2e88;
+transition:0.4s;
+}
+button:hover{transform:scale(1.1);}
+
+.card{
+display:none;
+padding:30px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+border-radius:20px;
+box-shadow:0 0 40px rgba(255,0,120,0.7);
+animation:fadeIn 2s ease forwards;
+max-height:80vh;
+overflow:auto;
+}
+
+.typing{
+white-space:pre-line;
+border-right:2px solid white;
+overflow:hidden;
+animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
+.signature{
+margin-top:25px;
+font-size:18px;
+opacity:0;
+transition:2s;
+color:#ffd6ec;
+}
+
+.countdown{
+margin-bottom:15px;
+font-size:16px;
+color:#ffb3da;
+}
+
+/* Floating Hearts */
+.heart{
+position:absolute;
+bottom:-20px;
+width:15px;
+height:15px;
+background:#ff2e88;
+transform:rotate(45deg);
+animation:floatUp 6s linear infinite;
+}
+.heart::before,.heart::after{
+content:"";
+position:absolute;
+width:15px;
+height:15px;
+background:#ff2e88;
+border-radius:50%;
+}
+.heart::before{top:-8px;left:0;}
+.heart::after{left:-8px;top:0;}
+
+@keyframes floatUp{
+from{transform:translateY(0) rotate(45deg);opacity:1;}
+to{transform:translateY(-100vh) rotate(45deg);opacity:0;}
+}
+
+/* Rose Petal Rain */
+.petal{
+position:absolute;
+top:-20px;
+width:12px;
+height:18px;
+background:linear-gradient(45deg,#ff4da6,#ff99cc);
+border-radius:50% 50% 50% 0;
+opacity:0.8;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
 </head>
+
 <body>
-    <p>this is paragarapah</p>
-    <h5>new added heading 5 </h5>
-  <h1>this is heading</h1>
+
+<div class="container">
+
+<div id="login">
+<h2>Enter Special Name ❤️</h2>
+<input type="password" id="pass" placeholder="Enter name">
+<br>
+<button onclick="check()">Unlock</button>
+</div>
+
+<div class="card" id="card">
+<h1>🎂 Happy Birthday Sara 🎉</h1>
+<div class="countdown" id="countdown"></div>
+<p class="typing" id="message"></p>
+
+<div class="signature" id="sign">
+Forever Yours,<br>
+Tumhara Lover – Mohd Kaif ❤️
+</div>
+</div>
+
+</div>
+
+<script>
+
+function check(){
+let p=document.getElementById("pass").value.toLowerCase();
+if(p==="ahana"){
+document.getElementById("login").style.display="none";
+document.getElementById("card").style.display="block";
+startTyping();
+createHearts();
+createPetals();
+startCountdown();
+}else{
+alert("Wrong name ❤️");
+}
+}
+
+/* Improved Romantic Message */
+let text=`Sara urf Ahana ❤️
+
+🎂 Happy Birthday meri sabse khoobsurat aankho...
+wali Aaj ka din sirf tumhara hai,
+aur meri har dua me tumhara yeh din life ka sabse behtar ho aur hamesha.
+
+💖 Happy Valentine's Day meri jaan...
+
+Main tumhe dil se yeh yakeen dilata hoon
+ki zindagi ke har mod par,
+har condition me,
+har mushkil me,
+main hamesha tumhare saath khada rahunga.
+
+Main sirf tumse mohabbat nahi karta,
+main tumhari care karunga,
+tumhari respect hamesha karunga,
+aur tumhari protection meri zimmedari hogi.
+
+Tum kabhi akeli nahi ho...
+jab tak main hoon,
+tum safe ho,
+tum meri ho,
+aur main tumhara hoon.
+
+🤲 Dua:
+Ya Allah,
+Sara ki zindagi ko noor se bhar de,
+uski har takleef ko sukoon me badal de,
+uski muskurahat ko hamesha salamat rakh,
+aur agar meri mohabbat uske haq me behtar hai,
+to hume ek dusre ke naseeb me hamesha ke liye likh de.
+Ameen. ❤️`;
+
+function startTyping(){
+let i=0;
+let speed=35;
+function type(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,speed);
+}else{
+document.getElementById("sign").style.opacity="1";
+}
+}
+type();
+}
+
+/* Hearts */
+function createHearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},300);
+}
+
+/* Rose Petals */
+function createPetals(){
+setInterval(()=>{
+let petal=document.createElement("div");
+petal.classList.add("petal");
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(Math.random()*5+5)+"s";
+document.body.appendChild(petal);
+setTimeout(()=>petal.remove(),8000);
+},400);
+}
+
+/* Countdown */
+function startCountdown(){
+let target=new Date("Feb 14, 2026 00:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let gap=target-now;
+
+let d=Math.floor(gap/(1000*60*60*24));
+let h=Math.floor((gap%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((gap%(1000*60*60))/(1000*60));
+let s=Math.floor((gap%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML=
+"14 Feb Countdown: "+d+"d "+h+"h "+m+"m "+s+"s";
+},1000);
+}
+
+</script>
+
 </body>
-</html>
+    </html>
